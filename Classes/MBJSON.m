@@ -180,7 +180,7 @@ NSData *MBJSONDataFromObject(id object, NSError **error)
 
     if (data == nil && error && *error == nil)
     {
-        NSString *msg = MBLocalizedString(@"cannot_encode_json_data", @"Unable to encode JSON data from object.");
+        NSString *msg = MBLocalizedString(@"cannot_encode_json_data", @"Unable to encode JSON data.");
         NSDictionary *userInfo = [NSDictionary dictionaryWithObject:msg forKey:NSLocalizedDescriptionKey];
         *error = [NSError errorWithDomain:MBErrorDomain code:MBErrorCodeCannotEncodeJSONError userInfo:userInfo];
     }
