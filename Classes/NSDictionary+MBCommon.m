@@ -24,34 +24,36 @@
     BOOL appendAmp = NO;    
     for (NSString *key in self)
     {
-        if (appendAmp)
-        {
-            [urlString appendString:@"&"];
-        }
-        else
-        {
-            appendAmp = YES;
-        }
-        
         if ([[self objectForKey:key] isKindOfClass:[NSArray class]]) 
         {
             NSArray *array = [self objectForKey:key];
-            BOOL appendArrAmp = NO;
-            for (NSString *value in array) {
-                if (appendArrAmp) 
+            for (NSString *value in array)
+            {
+                if (appendAmp)
                 {
-                    [urlString appendFormat:@"&"];
-                } else 
-                {
-                    appendArrAmp = YES;
+                    [urlString appendString:@"&"];
                 }
+                else
+                {
+                    appendAmp = YES;
+                }
+
                 [urlString appendString:key];
                 [urlString appendString:@"="];
-                [urlString appendString:[value mb_URLEncodedString]];;
+                [urlString appendString:[value mb_URLEncodedString]];
             }
         }
         else 
         {
+            if (appendAmp)
+            {
+                [urlString appendString:@"&"];
+            }
+            else
+            {
+                appendAmp = YES;
+            }
+
             [urlString appendString:key];
             [urlString appendString:@"="];
             [urlString appendString:[[self objectForKey:key] mb_URLEncodedString]];;
