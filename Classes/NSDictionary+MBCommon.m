@@ -32,10 +32,30 @@
         {
             appendAmp = YES;
         }
-
-        [urlString appendString:key];
-        [urlString appendString:@"="];
-        [urlString appendString:[[self objectForKey:key] mb_URLEncodedString]];;
+        
+        if ([[self objectForKey:key] isKindOfClass:[NSArray class]]) 
+        {
+            NSArray *array = [self objectForKey:key];
+            BOOL appendArrAmp = NO;
+            for (NSString *value in array) {
+                if (appendArrAmp) 
+                {
+                    [urlString appendFormat:@"&"];
+                } else 
+                {
+                    appendArrAmp = YES;
+                }
+                [urlString appendString:key];
+                [urlString appendString:@"="];
+                [urlString appendString:[value mb_URLEncodedString]];;
+            }
+        }
+        else 
+        {
+            [urlString appendString:key];
+            [urlString appendString:@"="];
+            [urlString appendString:[[self objectForKey:key] mb_URLEncodedString]];;
+        }
     }
 
     return [urlString autorelease];
