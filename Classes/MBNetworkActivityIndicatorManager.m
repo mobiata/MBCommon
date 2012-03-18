@@ -8,6 +8,11 @@
 
 #import "MBNetworkActivityIndicatorManager.h"
 
+#if __IPHONE_OS_VERSION_MIN_REQUIRED
+
+#import <UIKit/UIKit.h>
+
+
 @interface MBNetworkActivityIndicatorManager ()
 @property (nonatomic, assign) NSInteger networkActivityCounter;
 @end
@@ -69,3 +74,5 @@
 }
 
 @end
+
+#endif

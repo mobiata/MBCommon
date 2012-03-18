@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#if __IPHONE_OS_VERSION_MIN_REQUIRED
+
 @interface MBNetworkActivityIndicatorManager : NSObject
 
 @property (nonatomic, assign, getter=isEnabled) BOOL enabled;
@@ -18,3 +20,5 @@
 + (MBNetworkActivityIndicatorManager *)sharedManager;
 
 @end
+
+#endif
