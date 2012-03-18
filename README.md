@@ -1,6 +1,6 @@
 # MBCommon
 
-MBCommon is a lightweight, generic Cocoa framework for iOS and OS X apps created by [Mobiata][Mobiata]. It is designed to be a repository for common code that can be shared across all of Mobiata's [open source projects][projects]. However, it can definitely be used on its own as it defines a number of classes and categories that are useful in their own right.
+MBCommon is a lightweight, generic Cocoa library for iOS and OS X. It is designed by [Mobiata][Mobiata] to be a repository for common code that can be shared across all of Mobiata's [open source projects][projects]. However, it can definitely be used on its own as it defines a number of classes and categories that are useful in their own right.
 
 ## Usage
 
