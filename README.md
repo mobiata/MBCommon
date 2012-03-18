@@ -1,6 +1,6 @@
 # MBCommon
 
-MBCommon is a lightweight, generic Cocoa framework for iOS and OS X apps created by [Mobiata][mobiata]. It is designed to be a repository for common code that can be shared across all of Mobiata's [open source projects][projects]. However, it can definitely be used on its own as it defines a number of classes and categories that are useful in their own right.
+MBCommon is a lightweight, generic Cocoa framework for iOS and OS X apps created by [Mobiata][Mobiata]. It is designed to be a repository for common code that can be shared across all of Mobiata's [open source projects][projects]. However, it can definitely be used on its own as it defines a number of classes and categories that are useful in their own right.
 
 ## Usage
 
@@ -9,6 +9,25 @@ To include MBCommon in your applications, first clone the MBCommon repository.
     $ git clone git://github.com/mobiata/MBCommon.git
 
 Then, drag the entire repository to the Xcode project explorer. To use any of the functionality defined in MBCommon, simply `#import "MBCommon.h"` at the top of any of your source files.
+
+## Requirements
+
+MBCommon runs on iOS 4.0 and above or OS X 10.6 and above.
+
+## ARC Support
+
+MBCommon does not currently support [ARC (Automatic Reference Counting)][ARC]. This may change in the future. For now, if you are using ARC in your own projects, you will need to set the `-fno-objc-arc` compiler flag on all MBCommon files. To do this:
+
+1. Launch Xcode for your project.
+2. Navigate to the "Builds Phases" tab of your target(s).
+3. Find all MBCommon source files and add `-fno-objc-arc` to the "Compiler Flags" column.
+
+## JSON Support
+
+MBCommon defines a couple of methods in `MBJSON.h` that allow MBCommon (and other Mobiata projects) to easily encode and decode `JSON` strings. These methods should work without configuration and will automatically use whatever JSON library you have included in your project. Or, if your project targets OS X 10.7 (Lion) or iOS 5, you don't need to include any library as [`NSJSONSerialization`](NSJSONSerialization) can be used. The currently supported JSON libraries are:
+
+* [JSONKit][JSONKit]
+* [SBJson][SBJson]
 
 ## Localization
 
@@ -34,3 +53,8 @@ You can look for all strings used by MBCommon by grepping for `MBLocalizedString
 
 [mobiata]: http://www.mobiata.com/
 [projects]: https://github.com/mobiata/
+[ARC]: http://clang.llvm.org/docs/AutomaticReferenceCounting.html
+[NSJSONSerialization]: http://developer.apple.com/library/ios/documentation/Foundation/Reference/NSJSONSerialization_Class/Reference/Reference.html
+[JSONKit]: https://github.com/johnezang/JSONKit
+[SBJson]: http://stig.github.com/json-framework/
+[JSON]: http://json.org/
