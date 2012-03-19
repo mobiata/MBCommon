@@ -4,7 +4,7 @@ MBCommon is a lightweight, generic Cocoa library for iOS and OS X. It is designe
 
 ## Requirements
 
-MBCommon runs on iOS 4.0 and above or OS X 10.6 and above.
+MBCommon runs on iOS 4.0 and above and OS X 10.6 and above.
 
 ## Usage
 
