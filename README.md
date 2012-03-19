@@ -31,7 +31,7 @@ MBCommon defines a couple of methods in `MBJSON.h` that allow MBCommon (and othe
 
 ## Localization
 
-MBCommon defines a few strings that could theoretically be shown to users. These are most often error messages placed into the `userInfo` dictionary of `NSError` objects. MBCommon uses the `MBLocalizedString` macro to try and find translated versions of these strings for your users. This macro gives you a couple of choices if you decide to localize your application for languages other than English. `MBLocalizedString` is defined as follows.
+MBCommon defines a few strings that could theoretically be shown to users. These are most often error messages placed into the `userInfo` dictionary of `NSError` objects. MBCommon uses the `MBLocalizedString` macro to try and find translated versions of these strings for your users. This macro gives you a couple of choices if you decide to localize your application for languages other than English. `MBLocalizedString` is defined as follows:
 
 ```objc
 #ifdef MBLocalizationTable
@@ -51,7 +51,7 @@ This macro allows you to add MBCommon strings directly to your standard `Localiz
 #define MBLocalizationTable @"MBCommon"
 ```
 
-You can look for all strings used by MBCommon by grepping for `MBLocalizedString` in this project. You should see a number of hits like the following:
+You can look for all strings used by MBCommon by searching for references to `MBLocalizedString` in this project. You should see a number of hits like the following:
 
 ```objc
 NSString *msg = MBLocalizedString(@"cannot_encode_json_data", @"Unable to encode JSON data.");
