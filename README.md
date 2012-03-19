@@ -2,17 +2,17 @@
 
 MBCommon is a lightweight, generic Cocoa library for iOS and OS X. It is designed by [Mobiata][Mobiata] to be a repository for common code that can be shared across all of Mobiata's [open source projects][projects]. However, it can definitely be used on its own as it defines a number of classes and categories that are useful in their own right.
 
-## Usage
-
-To include MBCommon in your applications, first clone the MBCommon repository.
-
-    $ git clone git://github.com/mobiata/MBCommon.git
-
-Then, drag the entire repository to the Xcode project explorer. To use any of the functionality defined in MBCommon, simply `#import "MBCommon.h"` at the top of any of your source files.
-
 ## Requirements
 
 MBCommon runs on iOS 4.0 and above or OS X 10.6 and above.
+
+## Usage
+
+To include MBCommon in your application, clone the MBCommon repository and include all of the MBCommon source files in your project.
+
+    $ git clone git://github.com/mobiata/MBCommon.git
+
+To reference any of the functionality defined in MBCommon, simply `#import "MBCommon.h"` at the top of your source file.
 
 ## ARC Support
 
@@ -24,14 +24,14 @@ MBCommon does not currently support [ARC (Automatic Reference Counting)][ARC]. T
 
 ## JSON Support
 
-MBCommon defines a couple of methods in `MBJSON.h` that allow MBCommon (and other Mobiata projects) to easily encode and decode `JSON` strings. These methods should work without configuration and will automatically use whatever JSON library you have included in your project. Or, if your project targets OS X 10.7 (Lion) or iOS 5, you don't need to include any library as [`NSJSONSerialization`](NSJSONSerialization) can be used. The currently supported JSON libraries are:
+MBCommon defines a couple of methods in `MBJSON.h` that allow MBCommon (and other Mobiata projects) to easily encode and decode [JSON][JSON] strings. These methods should work without configuration and will automatically use whichever JSON library you have included in your project. Or, if your project targets OS X 10.7 (Lion) or iOS 5, you don't need to include any library as [`NSJSONSerialization`](NSJSONSerialization) can be used. The currently supported JSON libraries are:
 
 * [JSONKit][JSONKit]
 * [SBJson][SBJson]
 
 ## Localization
 
-MBCommon defines a few strings that could theoretically be shown to users. These are most often error messages placed into the `userInfo` dictionaries of `NSError` objects. MBCommon uses the `MBLocalizedString` macro to try and find translated versions of these strings for your users. This macro gives you a couple of choices if you decide to localize your application for languages other than English. `MBLocalizedString` is defined as follows.
+MBCommon defines a few strings that could theoretically be shown to users. These are most often error messages placed into the `userInfo` dictionary of `NSError` objects. MBCommon uses the `MBLocalizedString` macro to try and find translated versions of these strings for your users. This macro gives you a couple of choices if you decide to localize your application for languages other than English. `MBLocalizedString` is defined as follows.
 
     #ifdef MBLocalizationTable
     #define MBLocalizedString(key, default) \
@@ -43,7 +43,7 @@ MBCommon defines a few strings that could theoretically be shown to users. These
 
 The first parameter of this macro is the string key while the second is the default (English) translation.
 
-This macro allows you to add MBCommon strings directly to your standard `Localizable.strings` file. Or, if you wish, you can put all MBRequest strings into their own `.strings` file. If you opt for the latter, you must define `MBLocalizationTable` to be the name of this file. For example, if you want to use a file called `MBCommon.strings`, you would add the following to the `Prefix.pch` file of your project:
+This macro allows you to add MBCommon strings directly to your standard `Localizable.strings` file. Or, if you wish, you can put all MBCommon strings into their own `.strings` file. If you opt for the latter, you must define `MBLocalizationTable` to be the name of this file. For example, if you want to use a file called `MBCommon.strings`, you would add the following to the `Prefix.pch` file of your project:
 
     #define MBLocalizationTable @"MBCommon"
 
