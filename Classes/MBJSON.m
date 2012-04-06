@@ -149,7 +149,7 @@ NSData *MBJSONDataFromObject(id object, NSError **error)
         case MBJSONLibraryJSONKit:
         {
             SEL selector = @selector(JSONDataWithOptions:error:);
-            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[data methodSignatureForSelector:selector]];
+            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[object methodSignatureForSelector:selector]];
             invocation.target = object;
             invocation.selector = selector;
 
