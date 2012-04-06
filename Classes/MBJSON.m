@@ -96,8 +96,8 @@ id MBJSONObjectFromData(NSData *data, NSError **error)
         case MBJSONLibrarySBJSON:
         {
             SEL selector = @selector(JSONValue);
-            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[object methodSignatureForSelector:selector]];
-            invocation.target = object;
+            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[data methodSignatureForSelector:selector]];
+            invocation.target = data;
             invocation.selector = selector;
 
             [invocation invoke];
