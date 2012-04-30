@@ -54,12 +54,8 @@ id MBJSONObjectFromData(NSData *data, NSError **error)
 {
     MBJSONDetermineJSONLibrary();
 
-    if (error)
-    {
-        *error = nil;
-    }
-
     id object = nil;
+    NSError *myError = nil;
     switch (_jsonLibrary)
     {
         case MBJSONLibraryApple:
@@ -72,7 +68,7 @@ id MBJSONObjectFromData(NSData *data, NSError **error)
             [invocation setArgument:&data atIndex:2];
             NSUInteger options = 0;
             [invocation setArgument:&options atIndex:3];
-            [invocation setArgument:error atIndex:4];
+            [invocation setArgument:myError atIndex:4];
 
             [invocation invoke];
             [invocation getReturnValue:&object];
@@ -87,7 +83,7 @@ id MBJSONObjectFromData(NSData *data, NSError **error)
 
             NSUInteger options = 0;
             [invocation setArgument:&options atIndex:2];
-            [invocation setArgument:error atIndex:3];
+            [invocation setArgument:myError atIndex:3];
 
             [invocation invoke];
             [invocation getReturnValue:&object];
@@ -108,10 +104,14 @@ id MBJSONObjectFromData(NSData *data, NSError **error)
             break;
     }
 
-    if (object == nil && error && *error == nil)
+    if (object == nil && error != NULL)
     {
         NSString *msg = MBLocalizedString(@"cannot_decode_json_data", @"Unable to decode JSON data.");
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:msg forKey:NSLocalizedDescriptionKey];
+        NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithObject:msg forKey:NSLocalizedDescriptionKey];
+        if (myError != nil)
+        {
+            [userInfo setObject:myError forKey:MBOriginalErrorKey];
+        }
         *error = [NSError errorWithDomain:MBErrorDomain code:MBErrorCodeCannotDecodeJSONError userInfo:userInfo];
     }
 
@@ -122,12 +122,8 @@ NSData *MBJSONDataFromObject(id object, NSError **error)
 {
     MBJSONDetermineJSONLibrary();
 
-    if (error)
-    {
-        *error = nil;
-    }
-
     NSData *data = nil;
+    NSError *myError = nil;
     switch (_jsonLibrary)
     {
         case MBJSONLibraryApple:
@@ -140,7 +136,7 @@ NSData *MBJSONDataFromObject(id object, NSError **error)
             [invocation setArgument:&object atIndex:2];
             NSUInteger options = 0;
             [invocation setArgument:&options atIndex:3];
-            [invocation setArgument:error atIndex:4];
+            [invocation setArgument:myError atIndex:4];
 
             [invocation invoke];
             [invocation getReturnValue:&data];
@@ -155,7 +151,7 @@ NSData *MBJSONDataFromObject(id object, NSError **error)
 
             NSUInteger options = 0;
             [invocation setArgument:&options atIndex:2];
-            [invocation setArgument:error atIndex:3];
+            [invocation setArgument:myError atIndex:3];
 
             [invocation invoke];
             [invocation getReturnValue:&data];
@@ -178,10 +174,14 @@ NSData *MBJSONDataFromObject(id object, NSError **error)
             break;
     }
 
-    if (data == nil && error && *error == nil)
+    if (data == nil && error != NULL)
     {
         NSString *msg = MBLocalizedString(@"cannot_encode_json_data", @"Unable to encode JSON data.");
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:msg forKey:NSLocalizedDescriptionKey];
+        NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithObject:msg forKey:NSLocalizedDescriptionKey];
+        if (myError != nil)
+        {
+            [userInfo setObject:myError forKey:MBOriginalErrorKey];
+        }
         *error = [NSError errorWithDomain:MBErrorDomain code:MBErrorCodeCannotEncodeJSONError userInfo:userInfo];
     }
 

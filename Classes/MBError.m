@@ -9,3 +9,4 @@
 #import "MBError.h"
 
 NSString * const MBErrorDomain = @"com.mobiata.error.common";
+NSString * const MBOriginalErrorKey = @"MBOriginalError";

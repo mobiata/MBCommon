@@ -14,3 +14,4 @@ typedef enum {
 } MBErrorCode;
 
 extern NSString * const MBErrorDomain;
+extern NSString * const MBOriginalErrorKey;
