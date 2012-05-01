@@ -56,6 +56,7 @@ id MBJSONObjectFromData(NSData *data, NSError **error)
 
     id object = nil;
     NSError *myError = nil;
+    NSError **myErrorPtr = &myError;
     switch (_jsonLibrary)
     {
         case MBJSONLibraryApple:
@@ -68,7 +69,7 @@ id MBJSONObjectFromData(NSData *data, NSError **error)
             [invocation setArgument:&data atIndex:2];
             NSUInteger options = 0;
             [invocation setArgument:&options atIndex:3];
-            [invocation setArgument:myError atIndex:4];
+            [invocation setArgument:myErrorPtr atIndex:4];
 
             [invocation invoke];
             [invocation getReturnValue:&object];
@@ -83,7 +84,7 @@ id MBJSONObjectFromData(NSData *data, NSError **error)
 
             NSUInteger options = 0;
             [invocation setArgument:&options atIndex:2];
-            [invocation setArgument:myError atIndex:3];
+            [invocation setArgument:myErrorPtr atIndex:3];
 
             [invocation invoke];
             [invocation getReturnValue:&object];
@@ -124,6 +125,7 @@ NSData *MBJSONDataFromObject(id object, NSError **error)
 
     NSData *data = nil;
     NSError *myError = nil;
+    NSError **myErrorPtr = &myError;
     switch (_jsonLibrary)
     {
         case MBJSONLibraryApple:
@@ -136,7 +138,7 @@ NSData *MBJSONDataFromObject(id object, NSError **error)
             [invocation setArgument:&object atIndex:2];
             NSUInteger options = 0;
             [invocation setArgument:&options atIndex:3];
-            [invocation setArgument:myError atIndex:4];
+            [invocation setArgument:myErrorPtr atIndex:4];
 
             [invocation invoke];
             [invocation getReturnValue:&data];
@@ -151,7 +153,7 @@ NSData *MBJSONDataFromObject(id object, NSError **error)
 
             NSUInteger options = 0;
             [invocation setArgument:&options atIndex:2];
-            [invocation setArgument:myError atIndex:3];
+            [invocation setArgument:myErrorPtr atIndex:3];
 
             [invocation invoke];
             [invocation getReturnValue:&data];
