@@ -69,7 +69,7 @@ id MBJSONObjectFromData(NSData *data, NSError **error)
             [invocation setArgument:&data atIndex:2];
             NSUInteger options = 0;
             [invocation setArgument:&options atIndex:3];
-            [invocation setArgument:myErrorPtr atIndex:4];
+            [invocation setArgument:&myErrorPtr atIndex:4];
 
             [invocation invoke];
             [invocation getReturnValue:&object];
@@ -84,7 +84,7 @@ id MBJSONObjectFromData(NSData *data, NSError **error)
 
             NSUInteger options = 0;
             [invocation setArgument:&options atIndex:2];
-            [invocation setArgument:myErrorPtr atIndex:3];
+            [invocation setArgument:&myErrorPtr atIndex:3];
 
             [invocation invoke];
             [invocation getReturnValue:&object];
@@ -138,7 +138,7 @@ NSData *MBJSONDataFromObject(id object, NSError **error)
             [invocation setArgument:&object atIndex:2];
             NSUInteger options = 0;
             [invocation setArgument:&options atIndex:3];
-            [invocation setArgument:myErrorPtr atIndex:4];
+            [invocation setArgument:&myErrorPtr atIndex:4];
 
             [invocation invoke];
             [invocation getReturnValue:&data];
@@ -153,7 +153,7 @@ NSData *MBJSONDataFromObject(id object, NSError **error)
 
             NSUInteger options = 0;
             [invocation setArgument:&options atIndex:2];
-            [invocation setArgument:myErrorPtr atIndex:3];
+            [invocation setArgument:&myErrorPtr atIndex:3];
 
             [invocation invoke];
             [invocation getReturnValue:&data];
