@@ -9,8 +9,8 @@
 #import "MBNetworkActivityIndicatorManager.h"
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
-
 #import <UIKit/UIKit.h>
+#endif
 
 
 @interface MBNetworkActivityIndicatorManager ()
@@ -47,6 +47,7 @@
 
 - (void)networkActivityStarted
 {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED
     if ([self isEnabled])
     {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -57,10 +58,12 @@
             _networkActivityCounter++;
         });
     }
+#endif
 }
 
 - (void)networkActivityStopped
 {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED
     if ([self isEnabled])
     {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -71,8 +74,7 @@
             _networkActivityCounter = _networkActivityCounter - 1;
         });
     }
+#endif
 }
 
 @end
-
-#endif
