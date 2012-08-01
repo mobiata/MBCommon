@@ -52,8 +52,13 @@ void MBJSONDetermineJSONLibrary()
 
 id MBJSONObjectFromData(NSData *data, NSError **error)
 {
+    if (data == nil || [data length] <= 0)
+    {
+        return nil;
+    }
+    
     MBJSONDetermineJSONLibrary();
-
+    
     id object = nil;
     NSError *myError = nil;
     NSError **myErrorPtr = &myError;
