@@ -25,7 +25,13 @@ void MBJSONDetermineJSONLibrary()
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        if ([NSData instancesRespondToSelector:NSSelectorFromString(@"objectFromJSONDataWithParseOptions:error:@")])
+        Class c = NSClassFromString(@"NSJSONSerialization");
+        if (c)
+        {
+            _jsonLibrary = MBJSONLibraryApple;
+            _jsonClass = c;
+        }
+        else if ([NSData instancesRespondToSelector:NSSelectorFromString(@"objectFromJSONDataWithParseOptions:error:@")])
         {
             _jsonLibrary = MBJSONLibraryJSONKit;
         }
@@ -34,16 +40,6 @@ void MBJSONDetermineJSONLibrary()
             _jsonLibrary = MBJSONLibrarySBJSON;
         }
         else
-        {
-            Class c = NSClassFromString(@"NSJSONSerialization");
-            if (c)
-            {
-                _jsonLibrary = MBJSONLibraryApple;
-                _jsonClass = c;
-            }
-        }
-
-        if (_jsonLibrary == MBJSONLibraryNone)
         {
             [NSException raise:NSInternalInconsistencyException format:@"Unable to find a valid JSON library. Please target iOS 5, Lion, or include JSONKit or SBJSON in your project."];
         }
