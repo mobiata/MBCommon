@@ -25,11 +25,11 @@ void MBJSONDetermineJSONLibrary()
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        if ([NSData instancesRespondToSelector:@selector(objectFromJSONDataWithParseOptions:error:)])
+        if ([NSData instancesRespondToSelector:NSSelectorFromString(@"objectFromJSONDataWithParseOptions:error:@")])
         {
             _jsonLibrary = MBJSONLibraryJSONKit;
         }
-        else if ([NSData instancesRespondToSelector:@selector(JSONValue)])
+        else if ([NSData instancesRespondToSelector:NSSelectorFromString(@"JSONValue")])
         {
             _jsonLibrary = MBJSONLibrarySBJSON;
         }
@@ -66,7 +66,10 @@ id MBJSONObjectFromData(NSData *data, NSError **error)
     {
         case MBJSONLibraryApple:
         {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
             SEL selector = @selector(JSONObjectWithData:options:error:);
+#pragma clang diagnostic pop
             NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[_jsonClass methodSignatureForSelector:selector]];
             invocation.target = _jsonClass;
             invocation.selector = selector;
@@ -82,7 +85,10 @@ id MBJSONObjectFromData(NSData *data, NSError **error)
         }
         case MBJSONLibraryJSONKit:
         {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
             SEL selector = @selector(objectFromJSONDataWithParseOptions:error:);
+#pragma clang diagnostic pop
             NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[data methodSignatureForSelector:selector]];
             invocation.target = data;
             invocation.selector = selector;
@@ -97,7 +103,10 @@ id MBJSONObjectFromData(NSData *data, NSError **error)
         }
         case MBJSONLibrarySBJSON:
         {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
             SEL selector = @selector(JSONValue);
+#pragma clang diagnostic pop
             NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[data methodSignatureForSelector:selector]];
             invocation.target = data;
             invocation.selector = selector;
@@ -135,7 +144,10 @@ NSData *MBJSONDataFromObject(id object, NSError **error)
     {
         case MBJSONLibraryApple:
         {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
             SEL selector = @selector(dataWithJSONObject:options:error:);
+#pragma clang diagnostic pop
             NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[_jsonClass methodSignatureForSelector:selector]];
             invocation.target = _jsonClass;
             invocation.selector = selector;
@@ -151,7 +163,10 @@ NSData *MBJSONDataFromObject(id object, NSError **error)
         }
         case MBJSONLibraryJSONKit:
         {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
             SEL selector = @selector(JSONDataWithOptions:error:);
+#pragma clang diagnostic pop
             NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[object methodSignatureForSelector:selector]];
             invocation.target = object;
             invocation.selector = selector;
@@ -166,8 +181,11 @@ NSData *MBJSONDataFromObject(id object, NSError **error)
         }
         case MBJSONLibrarySBJSON:
         {
-            NSString *string = nil;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
             SEL selector = @selector(JSONRepresentation);
+#pragma clang diagnostic pop
+            NSString *string = nil;
             NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[object methodSignatureForSelector:selector]];
             invocation.target = object;
             invocation.selector = selector;
