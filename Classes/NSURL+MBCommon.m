@@ -28,7 +28,6 @@
 
     [urlString appendString:[params mb_URLParameterString]];
     NSURL *url = [NSURL URLWithString:urlString];
-    [urlString release];
     return url;
 }
 

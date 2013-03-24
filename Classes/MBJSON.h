@@ -8,5 +8,5 @@
 
 #import <Foundation/Foundation.h>
 
-id MBJSONObjectFromData(NSData *data, NSError **error);
-NSData *MBJSONDataFromObject(id object, NSError **error);
+id MBJSONObjectFromData(NSData *data, NSError * __autoreleasing * error);
+NSData *MBJSONDataFromObject(id object, NSError * __autoreleasing * error);

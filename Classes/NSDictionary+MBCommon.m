@@ -60,7 +60,7 @@
         }
     }
 
-    return [urlString autorelease];
+    return urlString;
 }
 
 @end

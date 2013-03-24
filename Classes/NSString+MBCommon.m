@@ -12,12 +12,12 @@
 
 - (NSString *)mb_URLEncodedString
 {
-    NSString *s = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,
-                                                                      (CFStringRef)self,
-                                                                      NULL,
-                                                                      (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-                                                                      kCFStringEncodingUTF8);
-    return [s autorelease];
+    NSString *s = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
+                                                                                        (CFStringRef)self,
+                                                                                        NULL,
+                                                                                        (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                                                                        kCFStringEncodingUTF8));
+    return s;
 }
 
 @end
