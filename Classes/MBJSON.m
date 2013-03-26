@@ -21,6 +21,11 @@ id MBJSONObjectFromData(NSData *data, NSError * __autoreleasing * error)
 
 NSData *MBJSONDataFromObject(id object, NSError * __autoreleasing * error)
 {
+    if (object == nil)
+    {
+        return nil;
+    }
+
     NSData *data = [NSJSONSerialization dataWithJSONObject:object options:0 error:error];
     return data;
 }
