@@ -20,9 +20,6 @@
 
 @implementation MBNetworkActivityIndicatorManager
 
-@synthesize enabled = _enabled;
-@synthesize networkActivityCounter = _networkActivityCounter;
-
 #pragma mark - Object Lifecycle
 
 - (id)init
