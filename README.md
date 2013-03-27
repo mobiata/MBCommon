@@ -4,7 +4,7 @@ MBCommon is a lightweight, generic Cocoa library for iOS and OS X. It is designe
 
 ## Requirements
 
-MBCommon runs on iOS 4.0 and above and OS X 10.6 and above.
+MBCommon runs on iOS 5.0 and above and OS X 10.7 and above.
 
 ## Usage
 
@@ -16,18 +16,11 @@ To reference any of the functionality defined in MBCommon, simply `#import "MBCo
 
 ## ARC Support
 
-MBCommon does not currently support [ARC (Automatic Reference Counting)][ARC]. This may change in the future. For now, if you are using ARC in your own projects, you will need to set the `-fno-objc-arc` compiler flag on all MBCommon files. To do this:
+MBCommon uses [ARC (Automatic Reference Counting)][ARC]. If you are not using ARC in your own projects, you will need to set the `-fobjc-arc` compiler flag on all MBCommon files. To do this:
 
 1. Launch Xcode for your project.
 2. Navigate to the "Builds Phases" tab of your target(s).
-3. Find all MBCommon source files and add `-fno-objc-arc` to the "Compiler Flags" column.
-
-## JSON Support
-
-MBCommon defines a couple of methods in `MBJSON.h` that allow MBCommon (and other Mobiata projects) to easily encode and decode [JSON][JSON] strings. These methods should work without configuration and will automatically use whichever JSON library you have included in your project. Or, if your project targets OS X 10.7 (Lion) or iOS 5, you don't need to include any library as [`NSJSONSerialization`](NSJSONSerialization) can be used. The currently supported JSON libraries are:
-
-* [JSONKit][JSONKit]
-* [SBJson][SBJson]
+3. Find all MBCommon source files and add `-f-objc-arc` to the "Compiler Flags" column.
 
 ## Localization
 
@@ -60,7 +53,3 @@ NSString *msg = MBLocalizedString(@"cannot_encode_json_data", @"Unable to encode
 [mobiata]: http://www.mobiata.com/
 [projects]: https://github.com/mobiata/
 [ARC]: http://clang.llvm.org/docs/AutomaticReferenceCounting.html
-[NSJSONSerialization]: http://developer.apple.com/library/ios/documentation/Foundation/Reference/NSJSONSerialization_Class/Reference/Reference.html
-[JSONKit]: https://github.com/johnezang/JSONKit
-[SBJson]: http://stig.github.com/json-framework/
-[JSON]: http://json.org/
