@@ -22,34 +22,6 @@ MBCommon uses [ARC (Automatic Reference Counting)][ARC]. If you are not using AR
 2. Navigate to the "Builds Phases" tab of your target(s).
 3. Find all MBCommon source files and add `-f-objc-arc` to the "Compiler Flags" column.
 
-## Localization
-
-MBCommon defines a few strings that could theoretically be shown to users. These are most often error messages placed into the `userInfo` dictionary of `NSError` objects. MBCommon uses the `MBLocalizedString` macro to try and find translated versions of these strings for your users. This macro gives you a couple of choices if you decide to localize your application for languages other than English. `MBLocalizedString` is defined as follows:
-
-```objc
-#ifdef MBLocalizationTable
-#define MBLocalizedString(key, default) \
-[[NSBundle mainBundle] localizedStringForKey:(key) value:(default) table:MBLocalizationTable]
-#else
-#define MBLocalizedString(key, default) \
-[[NSBundle mainBundle] localizedStringForKey:(key) value:(default) table:nil]
-#endif
-```
-
-The first parameter of this macro is the string key while the second is the default (English) translation.
-
-This macro allows you to add MBCommon strings directly to your standard `Localizable.strings` file. Or, if you wish, you can put all MBCommon strings into their own `.strings` file. If you opt for the latter, you must define `MBLocalizationTable` to be the name of this file. For example, if you want to use a file called `MBCommon.strings`, you would add the following to the `Prefix.pch` file of your project:
-
-```objc
-#define MBLocalizationTable @"MBCommon"
-```
-
-You can look for all strings used by MBCommon by searching for references to `MBLocalizedString` in this project. You should see a number of hits like the following:
-
-```objc
-NSString *msg = MBLocalizedString(@"cannot_encode_json_data", @"Unable to encode JSON data.");
-```
-
 [mobiata]: http://www.mobiata.com/
 [projects]: https://github.com/mobiata/
 [ARC]: http://clang.llvm.org/docs/AutomaticReferenceCounting.html
